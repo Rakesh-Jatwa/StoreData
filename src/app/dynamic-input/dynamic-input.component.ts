@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-dynamic-input',
@@ -17,6 +18,8 @@ export class DynamicInputComponent implements OnInit {
   itemList: any = [];
   fields:any = [];
   InpuValue2: any;
+  StoreValue: any;
+  Message: string;
 
 
   constructor(private fb:FormBuilder) { }
@@ -25,7 +28,7 @@ export class DynamicInputComponent implements OnInit {
   }
 
 
-  get f() { return this.registrationForm.controls; }
+  // get f() { return this.registrationForm.controls; }
 
   onSubmit() {
     this.isSubmitted = true;
@@ -47,13 +50,22 @@ export class DynamicInputComponent implements OnInit {
         }
         console.log(this.itemList);
       }
- 
-
-   
-     
-
-
     }
+  
+  OnkeyChange(){
+   
+   if(Number(this.registrationForm.value.labels))
+   { console.log('========daat');
+      this.registrationForm.controls.labels.reset();
+    //  this.Message =" Only String value is allowed"
+   }
+   else{}
+  }
+
+  addros(){
+    this.onSubmit();
+  }
+  
   }  
 
 

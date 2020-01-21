@@ -6,11 +6,11 @@
             <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                 <!-- Gender -->
                 <div class="group-gap">
-                    <h5 class="mb-3">Gender</h5>
+                    <h5 class="mb-3">Multiple user Create....</h5>
                     <div class="d-block my-3">
                         <div>
                         <div class="custom-control custom-radio">
-                            <input id="male" type="radio" class="custom-control-input" value="male" name="gender"  [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" 
+                            <input id="male" type="radio" class="custom-control-input" value="male" name="gender"  
                                 formControlName="gender">
                             <label class="custom-control-label" for="male">Create Single user</label>
 
@@ -18,40 +18,65 @@
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input id="female" type="radio" class="custom-control-input" value="female" name="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
+                            <input id="female" type="radio" class="custom-control-input" value="female" name="gender" 
                                 formControlName="gender">
                             <label class="custom-control-label" for="female">Create Multiple user</label>
                         </div> 
                         
-                        <div *ngIf="submitted && f.controls.gender.required" class="invalid-feedback">
-                            <div *ngIf="f.controls.controls.required">First Name is required</div>
-                        </div> 
+                      
                         </div>
    
-                        <div class="custom-control ">
-                            <input  type="text" class="custom-control-input"  name="gender"[ngClass]="{ 'is-invalid': submitted && f.fields.errors }"
+                        <div class="">
+                                <label class="" for="female">Enter fields</label>
+                                <input  type="number" class=""  name="gender" 
                                 formControlName="fields"  minlength="1" maxlength="5">
-                            <label class="custom-control-label" for="female">Enter fields</label>
-                            <div *ngIf="submitted && f.fields.errors" class="invalid-feedback">
-                                <div *ngIf="f.fields.errors.required">First Name is required</div>
-                            </div> 
+                                <div *ngIf="registrationForm.controls.fields.touched && registrationForm.controls.fields.pristine ">
+                                        Please Enter Labels here...
+                                    </div>
                         </div>
 
-                        <div class="custom-control ">
-                            <textarea id="female" type="text" class="custom-control-input" name="gender"
-                                formControlName="labels" minlength="1" maxlength="50"></textarea>
-                            <label class="custom-control-label" for="female">Enter Labels</label>
+                        <div class="">
+                                <label class="" for="female">Enter Labels</label>
+                            <textarea id="female" type="text" class="" name="gender"
+                                formControlName="labels" minlength="1" maxlength="50" (keyup)="OnkeyChange()">{{Message}}</textarea>
+                            <div *ngIf="registrationForm.controls.labels.touched &&  registrationForm.controls.labels.pristine">
+                                Please Enter Labels here...
+                            </div>
+                            
                         </div>
-
-
-
-                       
+   
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-danger btn-lg btn-block"   [disabled]="!registrationForm.valid">Submit</button>
             </form><!-- Form ends -->
+
+
+
+
+
+<!-- 
+            <div *ngIf="itemList.button">
+
+                    <div *ngFor="let item of itemList; let i=index">
+                            <div>
+                                <input  type="text"  
+                             placeholder="Enter New User Name Here"
+                              ({ngModel})="itemList.button" value="person {{i+1}}" class="age" >
+                              <button type="button"><span>&#10003;</span></button>
+                            </div>
+                          <label>{{fields[i].label}}</label>
+                        <input *ngIf="!itemList.button" type="text" class="form-control" ([ngModel])="itemList[i].address" >
+                        </div>
+                        <div >
+                         <button type="button" (click)="addros()" class="fa fa-plus"> + AddRows</button>
+                        </div>
+
+            </div> -->
+
+
+
 
         </div>
     </div>
