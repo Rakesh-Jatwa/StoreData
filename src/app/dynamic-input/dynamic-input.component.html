@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row custom-wrapper">
+        <div class="col-md-12">
+
+            <!-- Form starts -->
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <!-- Gender -->
+                <div class="group-gap">
+                    <h5 class="mb-3">Gender</h5>
+                    <div class="d-block my-3">
+                        <div>
+                        <div class="custom-control custom-radio">
+                            <input id="male" type="radio" class="custom-control-input" value="male" name="gender"  [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" 
+                                formControlName="gender">
+                            <label class="custom-control-label" for="male">Create Single user</label>
+
+
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input id="female" type="radio" class="custom-control-input" value="female" name="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
+                                formControlName="gender">
+                            <label class="custom-control-label" for="female">Create Multiple user</label>
+                        </div> 
+                        
+                        <div *ngIf="submitted && f.controls.gender.required" class="invalid-feedback">
+                            <div *ngIf="f.controls.controls.required">First Name is required</div>
+                        </div> 
+                        </div>
+   
+                        <div class="custom-control ">
+                            <input  type="text" class="custom-control-input"  name="gender"[ngClass]="{ 'is-invalid': submitted && f.fields.errors }"
+                                formControlName="fields"  minlength="1" maxlength="5">
+                            <label class="custom-control-label" for="female">Enter fields</label>
+                            <div *ngIf="submitted && f.fields.errors" class="invalid-feedback">
+                                <div *ngIf="f.fields.errors.required">First Name is required</div>
+                            </div> 
+                        </div>
+
+                        <div class="custom-control ">
+                            <textarea id="female" type="text" class="custom-control-input" name="gender"
+                                formControlName="labels" minlength="1" maxlength="50"></textarea>
+                            <label class="custom-control-label" for="female">Enter Labels</label>
+                        </div>
+
+
+
+                       
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-danger btn-lg btn-block"   [disabled]="!registrationForm.valid">Submit</button>
+            </form><!-- Form ends -->
+
+        </div>
+    </div>
+</div>
