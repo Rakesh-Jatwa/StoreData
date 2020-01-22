@@ -1,83 +1,72 @@
 <div class="container">
     <div class="row custom-wrapper">
         <div class="col-md-12">
-
-            <!-- Form starts -->
-            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-                <!-- Gender -->
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="ShowForms">
                 <div class="group-gap">
                     <h5 class="mb-3">Multiple user Create....</h5>
                     <div class="d-block my-3">
                         <div>
-                        <div class="custom-control custom-radio">
-                            <input id="male" type="radio" class="custom-control-input" value="male" name="gender"  
-                                formControlName="gender">
-                            <label class="custom-control-label" for="male">Create Single user</label>
-
-
+                            <div>
+                                <input type="radio" value="male" formControlName="radios" (click)="ShowIcon()">
+                                <label>Create Single user</label>
+                            </div>
+                            <div>
+                                <input type="radio" value="female" formControlName="radios">
+                                <label>Create Multiple user</label>
+                            </div>
                         </div>
-
-                        <div class="custom-control custom-radio">
-                            <input id="female" type="radio" class="custom-control-input" value="female" name="gender" 
-                                formControlName="gender">
-                            <label class="custom-control-label" for="female">Create Multiple user</label>
-                        </div> 
-                        
-                      
-                        </div>
-   
                         <div class="">
-                                <label class="" for="female">Enter fields</label>
-                                <input  type="number" class=""  name="gender" 
-                                formControlName="fields"  minlength="1" maxlength="5">
-                                <div *ngIf="registrationForm.controls.fields.touched && registrationForm.controls.fields.pristine ">
-                                        Please Enter Labels here...
-                                    </div>
-                        </div>
-
-                        <div class="">
-                                <label class="" for="female">Enter Labels</label>
-                            <textarea id="female" type="text" class="" name="gender"
-                                formControlName="labels" minlength="1" maxlength="50" (keyup)="OnkeyChange()">{{Message}}</textarea>
-                            <div *ngIf="registrationForm.controls.labels.touched &&  registrationForm.controls.labels.pristine">
+                            <label>Enter fields</label>
+                            <input type="number" name="fields" formControlName="fields" min="1" max="5" (keyup)="GetInputData()">
+                            <div
+                                *ngIf="registrationForm.controls.fields.touched && registrationForm.controls.fields.pristine ">
                                 Please Enter Labels here...
                             </div>
-                            
                         </div>
-   
+                        <div class="">
+                            <label class="" for="">Enter Labels</label>
+                            <textarea id="" type="text" class="" name="" formControlName="labels" minlength="1"
+                                maxlength="50"></textarea><div class="danger" 
+                                 *ngIf="registrationForm.controls.labels.touched &&  registrationForm.controls.labels.pristine">
+                                 Onlye String type value is allowed...
+                                </div>
+                            <div
+                                *ngIf="registrationForm.controls.labels.touched &&  registrationForm.controls.labels.pristine">
+                                Please Enter Labels here...
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
+                 <button type="submit" class="btn btn-danger btn-lg btn-block"
+                    [disabled]="!registrationForm.valid">Submit</button>
+            </form>
+            <br>
+            <div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-danger btn-lg btn-block"   [disabled]="!registrationForm.valid">Submit</button>
-            </form><!-- Form ends -->
+                <div *ngFor="let item of itemList; let i = index;">
+                    <div *ngIf="itemList[i].button">
+                        <div *ngIf="ShowPersonN">
+                            <input [disabled]="isDisabled" name="itemList.button" type="text"
+                                ([ngModel])="itemList.button" value="{{itemList[i].button}} {{i}}">
 
-
-
-
-
-<!-- 
-            <div *ngIf="itemList.button">
-
-                    <div *ngFor="let item of itemList; let i=index">
-                            <div>
-                                <input  type="text"  
-                             placeholder="Enter New User Name Here"
-                              ({ngModel})="itemList.button" value="person {{i+1}}" class="age" >
-                              <button type="button"><span>&#10003;</span></button>
-                            </div>
-                          <label>{{fields[i].label}}</label>
-                        <input *ngIf="!itemList.button" type="text" class="form-control" ([ngModel])="itemList[i].address" >
+                            <button *ngIf="SaveButton" type="button" (click)="SaveData()"><span>&#10003;</span></button>
+                            <button *ngIf="EShowButtons" type="button"
+                                (click)="ShowButtons()"><span>edit</span></button>
                         </div>
-                        <div >
-                         <button type="button" (click)="addros()" class="fa fa-plus"> + AddRows</button>
-                        </div>
+                    </div>
 
-            </div> -->
+                    <label>{{itemList[i].label}}</label>
 
+                    <div *ngIf="!itemList[i].button">
+                        <input type="text" name="itemList[i].fields" ([ngModel])="itemList[i].fields">
+                    </div>
 
-
-
+                </div>
+                <button *ngIf="ShowIcone" type="button" (click)="onSubmit()"
+                    class="btn btn-primary fa fa-plus">+</button>
+            </div>
         </div>
     </div>
 </div>
